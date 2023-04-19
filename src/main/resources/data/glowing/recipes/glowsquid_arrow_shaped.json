@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "A",
+    "D"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "A": {
+      "item": "minecraft:arrow"
+    },
+    "D": {
+      "item": "minecraft:dried_kelp"
+    }
+  },
+  "result": {
+    "item": "glowing:glowsquid_arrow",
+    "count": 1
+  }
+}

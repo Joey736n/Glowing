@@ -6,6 +6,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -36,7 +37,7 @@ public class GlowSquidTorchBlock extends TorchBlock implements SimpleWaterlogged
 
     @Override
     @NotNull
-    public BlockState updateShape(BlockState state, Direction direction, BlockState state1, LevelAccessor accessor, BlockPos position, BlockPos position1) {
+    public BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState state1, @NotNull LevelAccessor accessor, @NotNull BlockPos position, @NotNull BlockPos position1) {
         if (state.getValue(WATERLOGGED)) {
             accessor.scheduleTick(position, Fluids.WATER, Fluids.WATER.getTickDelay(accessor));
         }
@@ -45,9 +46,14 @@ public class GlowSquidTorchBlock extends TorchBlock implements SimpleWaterlogged
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
+        LevelReader reader = context.getLevel();
         BlockPos blockpos = context.getClickedPos();
         FluidState fluidstate = context.getLevel().getFluidState(blockpos);
-        return this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+        BlockState endState = this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+        if (endState.canSurvive(reader, blockpos)) {
+            return endState;
+        }
+        return null;
     }
 
     @NotNull
@@ -56,7 +62,7 @@ public class GlowSquidTorchBlock extends TorchBlock implements SimpleWaterlogged
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos position, Random random) {
+    public void animateTick(@NotNull BlockState state, Level level, BlockPos position, @NotNull Random random) {
         double d0 = (double)position.getX() + 0.5D;
         double d1 = (double)position.getY() + 0.66D;
         double d2 = (double)position.getZ() + 0.5D;

@@ -16,5 +16,6 @@ public class BlockRegistry {
 
     public static final RegistryObject<TorchBlock> GLOWSQUID_TORCH_BLOCK = BLOCKS.register("glowsquid_torch", () -> new GlowSquidTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((light) -> 10)));
     public static final RegistryObject<WallTorchBlock> WALL_GLOWSQUID_TORCH_BLOCK = BLOCKS.register("wall_glowsquid_torch", () -> new WallGlowSquidTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().sound(SoundType.WOOD).lightLevel((light) -> 10)));
+    public static final RegistryObject<GlowingSplatterBlock> GLOWING_SPLATTER_BLOCK = BLOCKS.register("glowing_splatter", () -> new GlowingSplatterBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().sound(SoundType.SLIME_BLOCK).lightLevel((light) -> 10)));
 
 }

@@ -38,7 +38,7 @@ public class WallGlowSquidTorchBlock extends WallTorchBlock implements SimpleWat
 
     @Override
     @NotNull
-    public BlockState updateShape(BlockState state, Direction direction, BlockState state1, LevelAccessor accessor, BlockPos position, BlockPos position1) {
+    public BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState state1, @NotNull LevelAccessor accessor, @NotNull BlockPos position, @NotNull BlockPos position1) {
         if (state.getValue(WATERLOGGED)) {
             accessor.scheduleTick(position, Fluids.WATER, Fluids.WATER.getTickDelay(accessor));
         }
@@ -52,15 +52,12 @@ public class WallGlowSquidTorchBlock extends WallTorchBlock implements SimpleWat
         FluidState fluidstate = context.getLevel().getFluidState(blockpos);
         LevelReader levelreader = context.getLevel();
         BlockState blockstate = this.defaultBlockState().setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
-        Direction[] adirection = context.getNearestLookingDirections();
+        Direction direction = context.getClickedFace();
 
-        for(Direction direction : adirection) {
-            if (direction.getAxis().isHorizontal()) {
-                Direction direction1 = direction.getOpposite();
-                blockstate = blockstate.setValue(FACING, direction1);
-                if (blockstate.canSurvive(levelreader, blockpos)) {
-                    return blockstate;
-                }
+        if (direction.getAxis().isHorizontal()) {
+            blockstate = blockstate.setValue(FACING, direction);
+            if (blockstate.canSurvive(levelreader, blockpos)) {
+                return blockstate;
             }
         }
         return null;
@@ -73,7 +70,7 @@ public class WallGlowSquidTorchBlock extends WallTorchBlock implements SimpleWat
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos position, Random random) {
+    public void animateTick(BlockState state, Level level, BlockPos position, @NotNull Random random) {
         Direction direction = state.getValue(FACING);
         double d0 = (double)position.getX() + 0.5D;
         double d1 = (double)position.getY() + 0.7D;

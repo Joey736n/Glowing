@@ -1,5 +1,20 @@
 {
-  "item.glowing.glowsquid_torch": "Glowsquid Torch",
   "block.glowing.glowsquid_torch": "Glowsquid Torch",
-  "block.glowing.wall_glowsquid_torch": "Wall Glowsquid Torch"
+  "block.glowing.wall_glowsquid_torch": "Wall Glowsquid Torch",
+  "block.glowing.glowing_splatter": "Glowing Splatter",
+
+  "item.glowing.glowsquid_torch": "Glowsquid Torch",
+  "item.glowing.glowing_splatter": "Glowing Splatter",
+  "item.glowing.glowsquid_arrow": "Glowsquid Arrow",
+
+  "entity.glowing.glowsquid_arrow": "Glowsquid Arrow",
+
+  "item.minecraft.potion.effect.glowing": "Potion of Glowing",
+  "item.minecraft.splash_potion.effect.glowing": "Splash Potion of Glowing",
+  "item.minecraft.tipped_arrow.effect.glowing": "Arrow of Glowing",
+  "item.minecraft.lingering_potion.effect.glowing": "Lingering Potion of Glowing",
+  "item.minecraft.potion.effect.long_glowing": "Potion of Glowing",
+  "item.minecraft.splash_potion.effect.long_glowing": "Splash Potion of Glowing",
+  "item.minecraft.tipped_arrow.effect.long_glowing": "Arrow of Glowing",
+  "item.minecraft.lingering_potion.effect.long_glowing": "Lingering Potion of Glowing"
 }
