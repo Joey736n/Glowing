@@ -15,6 +15,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -27,7 +28,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class Glowing
 {
     public static final String MODID = "glowing";
-
     public Glowing()
     {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

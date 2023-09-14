@@ -18,4 +18,6 @@ public class ItemRegistry {
     public static final RegistryObject<GlowsquidArrowItem> GLOWSQUID_ARROW_ITEM = ITEMS.register("glowsquid_arrow", () -> new GlowsquidArrowItem(new Item.Properties().tab(CreativeModeTab.TAB_COMBAT)));
 
     public static final RegistryObject<BlockItem> GLOWING_SPLATTER_ITEM = ITEMS.register("glowing_splatter", () -> new BlockItem(BlockRegistry.GLOWING_SPLATTER_BLOCK.get(), new Item.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+
+    public static final RegistryObject<GlowminescentPulseItem> GLOWMINESCENT_PULSE_ITEM = ITEMS.register("gmp", () -> new GlowminescentPulseItem(new Item.Properties().durability(5).tab(CreativeModeTab.TAB_TOOLS)));
 }
