@@ -3,6 +3,7 @@ package com.joey736n.glowing.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class WallGlowSquidTorchBlock extends WallTorchBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -70,7 +70,7 @@ public class WallGlowSquidTorchBlock extends WallTorchBlock implements SimpleWat
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos position, @NotNull Random random) {
+    public void animateTick(BlockState state, Level level, BlockPos position, @NotNull RandomSource random) {
         Direction direction = state.getValue(FACING);
         double d0 = (double)position.getX() + 0.5D;
         double d1 = (double)position.getY() + 0.7D;

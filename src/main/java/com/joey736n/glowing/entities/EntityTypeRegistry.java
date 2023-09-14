@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class EntityTypeRegistry {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, Glowing.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Glowing.MODID);
 
     public static final RegistryObject<EntityType<GlowsquidArrow>> GLOWSQUID_ARROW = ENTITY_TYPES.register("glowsquid_arrow", () -> EntityType.Builder.<GlowsquidArrow>of(GlowsquidArrow::new, MobCategory.MISC)
             .sized(0.5F, 0.5F)

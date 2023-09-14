@@ -7,15 +7,14 @@ import com.joey736n.glowing.entities.GlowsquidArrowDispenseBehaviour;
 import com.joey736n.glowing.items.ItemRegistry;
 import com.joey736n.glowing.potions.PotionRegistry;
 import com.joey736n.glowing.renderers.GlowsquidArrowRenderer;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -34,6 +33,7 @@ public class Glowing
         bus.addListener(this::setup);
         bus.addListener(this::doClientStuff);
         bus.addListener(this::registerRenderers);
+        bus.addListener(this::creativeTabs);
 
         BlockRegistry.BLOCKS.register(bus);
         ItemRegistry.ITEMS.register(bus);
@@ -50,12 +50,25 @@ public class Glowing
         DispenserBlock.registerBehavior(ItemRegistry.GLOWSQUID_ARROW_ITEM.get(), new GlowsquidArrowDispenseBehaviour());
     }
     public void doClientStuff(FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.GLOWSQUID_TORCH_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.WALL_GLOWSQUID_TORCH_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.GLOWING_SPLATTER_BLOCK.get(), RenderType.cutout());
+
     }
 
     public void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityTypeRegistry.GLOWSQUID_ARROW.get(), GlowsquidArrowRenderer::new);
+    }
+
+    private void creativeTabs(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            event.accept(ItemRegistry.GLOWSQUID_ARROW_ITEM);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+            event.accept(ItemRegistry.GLOWING_SPLATTER_ITEM);
+            event.accept(ItemRegistry.GLOWSQUID_TORCH_ITEM);
+        }
+
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(ItemRegistry.GLOWMINESCENT_PULSE_ITEM);
+        }
     }
 }

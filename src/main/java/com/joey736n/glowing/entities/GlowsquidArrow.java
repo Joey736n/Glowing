@@ -46,13 +46,13 @@ public class GlowsquidArrow extends AbstractArrow {
         Entity placer = this.getOwner();
         if (placer instanceof Player) { player = (Player) placer; }
 
-        BlockPlaceContext context = new BlockPlaceContext(this.level, player, InteractionHand.MAIN_HAND, new ItemStack(BlockRegistry.GLOWING_SPLATTER_BLOCK.get()), result);
+        BlockPlaceContext context = new BlockPlaceContext(this.level(), player, InteractionHand.MAIN_HAND, new ItemStack(BlockRegistry.GLOWING_SPLATTER_BLOCK.get()), result);
         Direction hitFace = result.getDirection();
         BlockPos placingPosition = result.getBlockPos().relative(hitFace);
 
         BlockState splatterState = BlockRegistry.GLOWING_SPLATTER_BLOCK.get().getStateForPlacement(context);
-        if (hasInk && context.canPlace() && splatterState != null && splatterState.canSurvive(this.level, placingPosition)) {
-            level.setBlockAndUpdate(placingPosition, splatterState);
+        if (hasInk && context.canPlace() && splatterState != null && splatterState.canSurvive(this.level(), placingPosition)) {
+            this.level().setBlockAndUpdate(placingPosition, splatterState);
             hasInk = false;
             return;
         }
